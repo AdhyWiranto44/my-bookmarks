@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "jsx": "javascriptreact",
+    "tsx": "typescriptreact",
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+}
