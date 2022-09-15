@@ -4,7 +4,7 @@ import { BsGearFill } from "react-icons/bs";
 
 export default function Navbar(props: any) {
   return (
-    <div className="bg-gray-100 bg-opacity-70 backdrop-blur-sm flex items-center justify-between py-4 px-4 lg:px-10 sticky top-0">
+    <header className="flex items-center justify-between py-4 px-4 lg:px-10">
       <Heading1 text={props.headingText} />
       <ButtonLink
         href="/bookmarks"
@@ -15,6 +15,6 @@ export default function Navbar(props: any) {
           </div>
         }
       />
-    </div>
+    </header>
   );
 }
