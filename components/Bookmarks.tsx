@@ -5,7 +5,23 @@ export default function Bookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
 
   const handleGetBookmarks = () => {
-    setBookmarks([{}, {}, {}, {}]);
+    setBookmarks([
+      {
+        name: "Github",
+        description: "Git repository service",
+        href: "https://github.com/",
+      },
+      {
+        name: "Youtube",
+        description: "Video streaming service",
+        href: "https://youtube.com/",
+      },
+      {
+        name: "Twitter",
+        description: "Social media",
+        href: "https://twitter.com/",
+      },
+    ]);
   };
 
   useEffect(() => {
@@ -15,7 +31,14 @@ export default function Bookmarks() {
   const renderBookmarks = () => {
     return bookmarks.length > 0
       ? bookmarks.map((bm: any, idx: any) => {
-          return <Bookmark key={idx} />;
+          return (
+            <Bookmark
+              key={idx}
+              name={bm.name}
+              description={bm.description}
+              href={bm.href}
+            />
+          );
         })
       : "";
   };
