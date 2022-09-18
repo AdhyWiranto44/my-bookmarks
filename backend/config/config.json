@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "my_bookmarks_development",
+    "host": "my_bookmarks_development.sqlite",
+    "dialect": "sqlite"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "my_bookmarks_test",
+    "host": "my_bookmarks_test.sqlite",
+    "dialect": "sqlite"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "my_bookmarks",
+    "host": "my_bookmarks.sqlite",
+    "dialect": "sqlite"
+  }
+}
