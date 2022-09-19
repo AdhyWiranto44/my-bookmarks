@@ -4,7 +4,7 @@ import ButtonLink from "./ButtonLink";
 export default function Bookmark(props: any) {
   return (
     <a
-      href={props.href || "#"}
+      href={props.url || "#"}
       className="bg-white opacity-75 hover:opacity-100 m-3 rounded-xl bg-[url('../public/web-placeholder.jpg')] bg-center bg-opacity-10 bg-cover duration-300 hover:shadow-custom"
     >
       <div className="bg-white bg-opacity-80 p-3 mt-40 rounded-b-xl backdrop-blur-md">
@@ -19,7 +19,7 @@ export default function Bookmark(props: any) {
         </div>
         <div className="flex">
           <ButtonLink
-            href={props.href || "#"}
+            href={props.url || "#"}
             text="Visit"
             icon={
               <div className="mr-1">

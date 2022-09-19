@@ -1,27 +1,15 @@
 import Bookmark from "./Bookmark";
 import { useState, useEffect } from "react";
+import { getAllBookmarks } from "../pages/api/bookmarks";
 
 export default function Bookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
 
-  const handleGetBookmarks = () => {
-    setBookmarks([
-      {
-        name: "Github",
-        description: "Git repository service",
-        href: "https://github.com/",
-      },
-      {
-        name: "Youtube",
-        description: "Video streaming service",
-        href: "https://youtube.com/",
-      },
-      {
-        name: "Twitter",
-        description: "Social media",
-        href: "https://twitter.com/",
-      },
-    ]);
+  const handleGetBookmarks = async () => {
+    const response = await getAllBookmarks();
+    const bookmarks = response.data.data.bookmarks;
+
+    setBookmarks(bookmarks);
   };
 
   useEffect(() => {
@@ -36,7 +24,7 @@ export default function Bookmarks() {
               key={idx}
               name={bm.name}
               description={bm.description}
-              href={bm.href}
+              url={bm.url}
             />
           );
         })
