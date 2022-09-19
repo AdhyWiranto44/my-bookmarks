@@ -5,7 +5,11 @@ const BookmarkCategoryController = require("../controllers/bookmark_category_con
 
 const bookmarkCategoryController = new BookmarkCategoryController();
 
-router.get("/bookmark_categories", bookmarkCategoryController.index);
+router.get("/bookmark_categories", bookmarkCategoryController.getAll);
+router.get("/bookmark_categories/:slug", bookmarkCategoryController.getOne);
+router.post("/bookmark_categories", bookmarkCategoryController.create);
+router.patch("/bookmark_categories/:slug", bookmarkCategoryController.update);
+router.delete("/bookmark_categories/:slug", bookmarkCategoryController.delete);
 
 
 module.exports = router;

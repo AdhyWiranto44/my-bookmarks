@@ -16,11 +16,11 @@ class BookmarkService {
   }
 
   async getOne(slug = "") {
-    const role = await new RoleRepository().getOne(slug);
+    const bookmark = await new CookmarkRepository().getOne(slug);
 
-    if (role == null) throw createError(StatusCodes.NOT_FOUND, "Role not found.");
+    if (bookmark == null) throw createError(StatusCodes.NOT_FOUND, "Bookmark not found.");
 
-    return role;
+    return bookmark;
   }
 
   async create(newBookmark) {
