@@ -1,6 +1,15 @@
+import colorOption from "../helpers/buttonColors";
+
 export default function Button(props: any) {
+  const btnColor = props.btnColor
+    ? colorOption[props.btnColor]
+    : colorOption.yellow;
+
   return (
-    <button className="text-gray-700 font-bold bg-yellow-400 border border-yellow-600 duration-300 hover:bg-yellow-500 active:bg-yellow-600 py-2 px-6 mr-2 my-2 rounded-lg flex items-center">
+    <button
+      className={`${btnColor} py-2 px-6 mr-2 my-2 rounded-lg flex items-center`}
+      onClick={props.onClick ? props.onClick : () => console.log("clicked.")}
+    >
       {props.icon}
       {props.text}
     </button>
