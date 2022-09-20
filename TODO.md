@@ -2,17 +2,17 @@
 
 - [x] Homepage
 
-- [] Database: my_bookmarks_db
+- [x] Database: my_bookmarks_db
 
-  - [] bookmarks
-  - [] categories
-  - [] bookmark_category
+  - [x] bookmarks
+  - [x] categories
+  - [x] bookmark_category
 
-- [] API for Database
+- [x] API for Database
 
-  - [] Bookmark
-  - [] Category
-  - [] BookmarkCategory
+  - [x] Bookmark
+  - [x] Category
+  - [x] BookmarkCategory
 
 - [] Manage Page (CRUD)
   - [] Bookmark
