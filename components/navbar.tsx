@@ -7,7 +7,7 @@ export default function Navbar(props: any) {
     <header className="flex items-center justify-between py-4 px-4 lg:px-10">
       <Heading1 text={props.headingText} />
       <ButtonLink
-        href="/bookmarks"
+        href="/manage"
         text="Manage"
         icon={
           <div className="mr-1">
