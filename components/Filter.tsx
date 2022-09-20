@@ -13,7 +13,7 @@ export default function Filter() {
 
   useEffect(() => {
     handleGetCategories();
-  });
+  }, []);
 
   const renderFilters = () => {
     return categories.length > 0

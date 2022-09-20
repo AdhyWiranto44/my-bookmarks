@@ -14,7 +14,7 @@ export default function Bookmarks() {
 
   useEffect(() => {
     handleGetBookmarks();
-  });
+  }, []);
 
   const renderBookmarks = () => {
     return bookmarks.length > 0

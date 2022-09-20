@@ -5,16 +5,16 @@ export default function Bookmark(props: any) {
   return (
     <a
       href={props.url || "#"}
-      className="bg-white opacity-75 hover:opacity-100 m-3 rounded-xl bg-[url('../public/web-placeholder.jpg')] bg-center bg-opacity-10 bg-cover duration-300 hover:shadow-custom"
+      className="bg-white opacity-75 hover:opacity-100 m-3 rounded-xl bg-[url('../public/web-placeholder.jpg')] bg-center bg-opacity-10 bg-cover duration-300 hover:shadow-custom border border-gray-300"
     >
       <div className="bg-white bg-opacity-80 p-3 mt-40 rounded-b-xl backdrop-blur-md">
         <div className="flex justify-between items-center mb-3">
           <div className="break-all">
-            <h3 className="font-semibold text-xl">{props.name}</h3>
+            <h3 className="font-semibold text-xl text-black">{props.name}</h3>
             <p className="text-gray-800">{props.description}</p>
           </div>
-          <button className="mx-2">
-            <BsThreeDotsVertical className="text-xl" />
+          <button className="mx-2 rounded-full duration-300 hover:bg-gray-200 p-2">
+            <BsThreeDotsVertical className="text-xl text-black" />
           </button>
         </div>
         <div className="flex">
