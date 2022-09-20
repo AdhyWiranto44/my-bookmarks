@@ -7,6 +7,12 @@ import { useEffect, useState } from "react";
 import { getAllBookmarks } from "../../api/bookmarks";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Button from "../../../components/Button";
+import TableContainer from "../../../components/table/TableContainer";
+import TableHeader from "../../../components/table/TableHeader";
+import TableHead from "../../../components/table/TableHead";
+import TableBody from "../../../components/table/TableBody";
+import TableRow from "../../../components/table/TableRow";
+import TableData from "../../../components/table/TableData";
 
 export default function BookmarkPage() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -26,11 +32,7 @@ export default function BookmarkPage() {
     return bookmarks.length > 0
       ? Object.keys(bookmarks[0]).map((head, idx) => {
           if (!["id", "slug"].includes(head))
-            return (
-              <th className="border border-black" key={idx}>
-                {head}
-              </th>
-            );
+            return <TableHead key={idx}>{head}</TableHead>;
         })
       : "";
   };
@@ -39,15 +41,15 @@ export default function BookmarkPage() {
     return bookmarks.length > 0
       ? bookmarks.map((bookmark, idx) => {
           return (
-            <tr className="border border-black" key={idx}>
-              <td className="border border-black">{bookmark.name}</td>
-              <td className="border border-black">{bookmark.description}</td>
-              <td className="border border-black">
+            <TableRow key={idx}>
+              <TableData>{bookmark.name}</TableData>
+              <TableData>{bookmark.description}</TableData>
+              <TableData>
                 <a href={bookmark.url}>{bookmark.url}</a>
-              </td>
-              <td className="border border-black">{bookmark.createdAt}</td>
-              <td className="border border-black">{bookmark.updatedAt}</td>
-              <td className="border border-black">
+              </TableData>
+              <TableData>{bookmark.createdAt}</TableData>
+              <TableData>{bookmark.updatedAt}</TableData>
+              <TableData>
                 <div className="flex items-center">
                   <div className="ml-2">
                     <ButtonLink
@@ -67,8 +69,8 @@ export default function BookmarkPage() {
                     }}
                   />
                 </div>
-              </td>
-            </tr>
+              </TableData>
+            </TableRow>
           );
         })
       : "";
@@ -90,18 +92,12 @@ export default function BookmarkPage() {
           <Heading1 text="List of Bookmarks" />
         </div>
       </ManageHeader>
-      <div className="text-black mt-4">
-        <table className="border border-black">
-          <thead className="border border-black">
-            {renderTableHeaders()}
-            <th className="border border-black">aksi</th>
-          </thead>
-          <tbody className="border border-black">{renderBookmarkRows()}</tbody>
-          <thead className="border border-black">
-            {renderTableHeaders()}
-            <th className="border border-black">aksi</th>
-          </thead>
-        </table>
+      <div className="text-black mt-4 overflow-x-scroll">
+        <TableContainer>
+          <TableHeader>{renderTableHeaders()}</TableHeader>
+          <TableBody>{renderBookmarkRows()}</TableBody>
+          <TableHeader>{renderTableHeaders()}</TableHeader>
+        </TableContainer>
       </div>
     </ManageLayout>
   );
