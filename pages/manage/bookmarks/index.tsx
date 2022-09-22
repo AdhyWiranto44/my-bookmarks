@@ -5,7 +5,14 @@ import ManageLayout from "../../../layouts/manageLayout";
 import ManageHeader from "../../../components/ManageHeader";
 import { useEffect, useState } from "react";
 import { getAllBookmarks, insertBookmark } from "../../api/bookmarks";
-import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
+import {
+  FaArrowUp,
+  FaChevronDown,
+  FaChevronUp,
+  FaEdit,
+  FaPlus,
+  FaTrashAlt,
+} from "react-icons/fa";
 import Button from "../../../components/Button";
 import TableContainer from "../../../components/table/TableContainer";
 import TableHeader from "../../../components/table/TableHeader";
@@ -14,6 +21,7 @@ import TableBody from "../../../components/table/TableBody";
 import TableRow from "../../../components/table/TableRow";
 import TableData from "../../../components/table/TableData";
 import { getAllCategories } from "../../api/category";
+import { BsXLg } from "react-icons/bs";
 
 export default function BookmarkPage() {
   const defaultForm: any = {
@@ -202,9 +210,15 @@ export default function BookmarkPage() {
         <Button
           btnColor="outlineBlue"
           icon={
-            <div className="mr-1">
-              <FaPlus />
-            </div>
+            formDisplay === false ? (
+              <div className="mr-1">
+                <FaChevronUp />
+              </div>
+            ) : (
+              <div className="mr-1">
+                <FaChevronDown />
+              </div>
+            )
           }
           text="Add new"
           onClick={(e: any) => {
