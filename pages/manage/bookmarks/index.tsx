@@ -5,7 +5,7 @@ import ManageLayout from "../../../layouts/manageLayout";
 import ManageHeader from "../../../components/ManageHeader";
 import { useEffect, useState } from "react";
 import { getAllBookmarks } from "../../api/bookmarks";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
 import Button from "../../../components/Button";
 import TableContainer from "../../../components/table/TableContainer";
 import TableHeader from "../../../components/table/TableHeader";
@@ -92,6 +92,18 @@ export default function BookmarkPage() {
           <Heading1 text="List of Bookmarks" />
         </div>
       </ManageHeader>
+      <div className="inline-block">
+        <ButtonLink
+          btnColor="blue"
+          href="/manage/bookmarks/add-new"
+          icon={
+            <div className="mr-1">
+              <FaPlus />
+            </div>
+          }
+          text="Add new"
+        />
+      </div>
       <div className="text-black mt-4 overflow-x-scroll">
         <TableContainer>
           <TableHeader>{renderTableHeaders()}</TableHeader>
