@@ -16,7 +16,7 @@ class BookmarkService {
   }
 
   async getOne(slug = "") {
-    const bookmark = await new CookmarkRepository().getOne(slug);
+    const bookmark = await new BookmarkRepository().getOne(slug);
 
     if (bookmark == null) throw createError(StatusCodes.NOT_FOUND, "Bookmark not found.");
 

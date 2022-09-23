@@ -2,8 +2,23 @@ import Bookmarks from "../components/Bookmarks";
 import Filter from "../components/Filter";
 import Navbar from "../components/navbar";
 import Searchbar from "../components/Searchbar";
+import { useState, useEffect } from "react";
+import { getAllBookmarks } from "./api/bookmarks";
 
 export default function Home() {
+  const [bookmarks, setBookmarks] = useState([]);
+
+  const handleGetBookmarks = async () => {
+    const response: any = await getAllBookmarks();
+    const bookmarks = response.data.data.bookmarks;
+
+    setBookmarks(bookmarks);
+  };
+
+  useEffect(() => {
+    handleGetBookmarks();
+  }, []);
+
   return (
     <>
       <Navbar headingText="My Bookmarks" />
@@ -14,11 +29,15 @@ export default function Home() {
             <span className="text-gray-400">in</span> My Bookmarks
           </p>
         </div>
-        <Searchbar placeholder="Find by description" />
+        <Searchbar
+          bookmarks={bookmarks}
+          setBookmarks={setBookmarks}
+          placeholder="Find by description"
+        />
         <Filter />
       </div>
       <div className="px-4 lg:px-44">
-        <Bookmarks />
+        <Bookmarks bookmarks={bookmarks} />
       </div>
     </>
   );

@@ -16,8 +16,8 @@ class BookmarkRepository {
       .findAll({
         where: {
           ...filter,
-          name: {
-            [Op.like]: filter.name !== undefined ? `${filter.name}%` : `%`
+          description: {
+            [Op.like]: filter.description !== undefined ? `%${filter.description}%` : `%`
           }
         }, limit: limit, offset: skip,
         order: [['createdAt', 'DESC']]

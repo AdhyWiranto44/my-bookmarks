@@ -2,23 +2,10 @@ import Bookmark from "./Bookmark";
 import { useState, useEffect } from "react";
 import { getAllBookmarks } from "../pages/api/bookmarks";
 
-export default function Bookmarks() {
-  const [bookmarks, setBookmarks] = useState([]);
-
-  const handleGetBookmarks = async () => {
-    const response = await getAllBookmarks();
-    const bookmarks = response.data.data.bookmarks;
-
-    setBookmarks(bookmarks);
-  };
-
-  useEffect(() => {
-    handleGetBookmarks();
-  }, []);
-
+export default function Bookmarks(props: any) {
   const renderBookmarks = () => {
-    return bookmarks.length > 0
-      ? bookmarks.map((bm: any, idx: any) => {
+    return props.bookmarks.length > 0
+      ? props.bookmarks.map((bm: any, idx: any) => {
           return (
             <Bookmark
               key={idx}
