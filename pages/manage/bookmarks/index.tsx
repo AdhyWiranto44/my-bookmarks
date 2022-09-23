@@ -157,6 +157,7 @@ export default function BookmarkPage() {
           return (
             <TableRow key={idx}>
               <TableData>{bookmark.name}</TableData>
+              <TableData>{bookmark.category}</TableData>
               <TableData>{bookmark.description}</TableData>
               <TableData>
                 <a href={bookmark.url}>{bookmark.url}</a>
