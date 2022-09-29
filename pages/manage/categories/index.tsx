@@ -41,7 +41,7 @@ export default function CategoryPage() {
     return categories.length > 0
       ? categories.map((category, idx) => {
           return (
-            <TableRow key={idx}>
+            <TableRow key={idx} num={idx}>
               <TableData>{category.name}</TableData>
               <TableData>{category.createdAt}</TableData>
               <TableData>{category.updatedAt}</TableData>
@@ -90,9 +90,15 @@ export default function CategoryPage() {
       </ManageHeader>
       <div className="text-black mt-4 overflow-x-scroll">
         <TableContainer>
-          <TableHeader>{renderTableHeaders()}</TableHeader>
+          <TableHeader>
+            {renderTableHeaders()}
+            <TableHead>Aksi</TableHead>
+          </TableHeader>
           <TableBody>{renderCategoryRows()}</TableBody>
-          <TableHeader>{renderTableHeaders()}</TableHeader>
+          <TableHeader>
+            {renderTableHeaders()}
+            <TableHead>Aksi</TableHead>
+          </TableHeader>
         </TableContainer>
       </div>
     </ManageLayout>

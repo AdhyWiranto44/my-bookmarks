@@ -155,7 +155,7 @@ export default function BookmarkPage() {
     return bookmarks.length > 0
       ? bookmarks.map((bookmark, idx) => {
           return (
-            <TableRow key={idx}>
+            <TableRow key={idx} num={idx}>
               <TableData>{bookmark.name}</TableData>
               <TableData>{bookmark.category}</TableData>
               <TableData>{bookmark.description}</TableData>
@@ -235,9 +235,15 @@ export default function BookmarkPage() {
       <div className="">{renderForm()}</div>
       <div className="text-black mt-4 overflow-x-scroll">
         <TableContainer>
-          <TableHeader>{renderTableHeaders()}</TableHeader>
+          <TableHeader>
+            {renderTableHeaders()}
+            <TableHead>Aksi</TableHead>
+          </TableHeader>
           <TableBody>{renderBookmarkRows()}</TableBody>
-          <TableHeader>{renderTableHeaders()}</TableHeader>
+          <TableHeader>
+            {renderTableHeaders()}
+            <TableHead>Aksi</TableHead>
+          </TableHeader>
         </TableContainer>
       </div>
     </ManageLayout>
