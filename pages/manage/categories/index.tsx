@@ -31,7 +31,7 @@ export default function CategoryPage() {
   const renderTableHeaders = () => {
     return categories.length > 0
       ? Object.keys(categories[0]).map((head, idx) => {
-          if (!["id", "slug"].includes(head))
+          if (!["id", "slug", "createdAt", "updatedAt"].includes(head))
             return <TableHead key={idx}>{head}</TableHead>;
         })
       : "";
@@ -43,8 +43,6 @@ export default function CategoryPage() {
           return (
             <TableRow key={idx} num={idx}>
               <TableData>{category.name}</TableData>
-              <TableData>{category.createdAt}</TableData>
-              <TableData>{category.updatedAt}</TableData>
               <TableData>
                 <div className="flex items-center">
                   <div className="ml-2">

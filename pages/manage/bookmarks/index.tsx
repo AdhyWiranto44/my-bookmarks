@@ -145,8 +145,9 @@ export default function BookmarkPage() {
   const renderTableHeaders = () => {
     return bookmarks.length > 0
       ? Object.keys(bookmarks[0]).map((head, idx) => {
-          if (!["id", "slug"].includes(head))
+          if (!["id", "slug", "createdAt", "updatedAt"].includes(head)) {
             return <TableHead key={idx}>{head}</TableHead>;
+          }
         })
       : "";
   };
@@ -162,8 +163,6 @@ export default function BookmarkPage() {
               <TableData>
                 <a href={bookmark.url}>{bookmark.url}</a>
               </TableData>
-              <TableData>{bookmark.createdAt}</TableData>
-              <TableData>{bookmark.updatedAt}</TableData>
               <TableData>
                 <div className="flex items-center">
                   <div className="ml-2">
