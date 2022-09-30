@@ -83,9 +83,9 @@ export default function CategoryPage() {
                     href={`/manage/categories/${category.slug}`}
                     btnColor={"red"}
                     icon={<FaTrashAlt />}
-                    onClick={(e: any) => {
-                      handleDeleteCategory(category.slug);
-                      handleGetCategories();
+                    onClick={async (e: any) => {
+                      await handleDeleteCategory(category.slug);
+                      await handleGetCategories();
                     }}
                   />
                 </div>
@@ -105,35 +105,35 @@ export default function CategoryPage() {
   };
 
   const renderForm = () => {
-    return formDisplay === true ? (
-      <>
-        <div className="mb-3">
-          <FormField
-            name="name"
-            type="text"
-            value={form.name}
-            onChange={(e: any) => {
-              setForm({ ...form, name: e.target.value });
+    return (
+      formDisplay && (
+        <>
+          <div className="mb-3">
+            <FormField
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={(e: any) => {
+                setForm({ ...form, name: e.target.value });
+              }}
+            />
+          </div>
+          <Button
+            btnColor="blue"
+            icon={
+              <div className="mr-1">
+                <FaPlus />
+              </div>
+            }
+            text="Add"
+            onClick={async (e: any) => {
+              await handleAddNewCategory();
+              setForm(defaultForm);
+              await handleGetCategories();
             }}
           />
-        </div>
-        <Button
-          btnColor="blue"
-          icon={
-            <div className="mr-1">
-              <FaPlus />
-            </div>
-          }
-          text="Add"
-          onClick={(e: any) => {
-            handleAddNewCategory();
-            setForm(defaultForm);
-            handleGetCategories();
-          }}
-        />
-      </>
-    ) : (
-      ""
+        </>
+      )
     );
   };
 

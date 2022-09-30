@@ -91,65 +91,65 @@ export default function BookmarkPage() {
   };
 
   const renderForm = () => {
-    return formDisplay === true ? (
-      <>
-        <div className="mb-3">
-          <FormField
-            name="name"
-            type="text"
-            value={form.name}
-            onChange={(e: any) => {
-              setForm({ ...form, name: e.target.value });
+    return (
+      formDisplay && (
+        <>
+          <div className="mb-3">
+            <FormField
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={(e: any) => {
+                setForm({ ...form, name: e.target.value });
+              }}
+            />
+          </div>
+          <div className="mb-3">
+            <FormField
+              name="description"
+              type="text"
+              value={form.description}
+              onChange={(e: any) => {
+                setForm({ ...form, description: e.target.value });
+              }}
+            />
+          </div>
+          <div className="mb-3">
+            <FormField
+              name="url"
+              type="text"
+              value={form.url}
+              onChange={(e: any) => {
+                setForm({ ...form, url: e.target.value });
+              }}
+            />
+          </div>
+          <div className="mb-3">
+            <FormSelect
+              name="category"
+              defaultValue="0"
+              loopData={renderCategories}
+              onChange={(e: any) => {
+                setForm({ ...form, category: e.target.value });
+              }}
+            />
+          </div>
+          <Button
+            btnColor="blue"
+            icon={
+              <div className="mr-1">
+                <FaPlus />
+              </div>
+            }
+            text="Add"
+            onClick={async (e: any) => {
+              await handleAddNewBookmark();
+              setForm(defaultForm);
+              await handleGetBookmarks();
             }}
           />
-        </div>
-        <div className="mb-3">
-          <FormField
-            name="description"
-            type="text"
-            value={form.description}
-            onChange={(e: any) => {
-              setForm({ ...form, description: e.target.value });
-            }}
-          />
-        </div>
-        <div className="mb-3">
-          <FormField
-            name="url"
-            type="text"
-            value={form.url}
-            onChange={(e: any) => {
-              setForm({ ...form, url: e.target.value });
-            }}
-          />
-        </div>
-        <div className="mb-3">
-          <FormSelect
-            name="category"
-            defaultValue="0"
-            loopData={renderCategories}
-            onChange={(e: any) => {
-              setForm({ ...form, category: e.target.value });
-            }}
-          />
-        </div>
-        <Button
-          btnColor="blue"
-          icon={
-            <div className="mr-1">
-              <FaPlus />
-            </div>
-          }
-          text="Add"
-          onClick={(e: any) => {
-            handleAddNewBookmark();
-            setForm(defaultForm);
-            handleGetBookmarks();
-          }}
-        />
-      </>
-    ) : (
-      ""
+        </>
+      )
     );
   };
 
@@ -189,9 +189,9 @@ export default function BookmarkPage() {
                     href={`/manage/bookmarks/${bookmark.slug}`}
                     btnColor={"red"}
                     icon={<FaTrashAlt />}
-                    onClick={(e: any) => {
-                      handleDeleteBookmark(bookmark.slug);
-                      handleGetBookmarks();
+                    onClick={async (e: any) => {
+                      await handleDeleteBookmark(bookmark.slug);
+                      await handleGetBookmarks();
                     }}
                   />
                 </div>
