@@ -8,9 +8,10 @@ import {
   deleteBookmark,
   getAllBookmarks,
   insertBookmark,
+  updateBookmark,
 } from "../../api/bookmarks";
 import {
-  FaArrowUp,
+  FaArrowLeft,
   FaChevronDown,
   FaChevronUp,
   FaEdit,
@@ -25,7 +26,6 @@ import TableBody from "../../../components/table/TableBody";
 import TableRow from "../../../components/table/TableRow";
 import TableData from "../../../components/table/TableData";
 import { getAllCategories } from "../../api/category";
-import { BsXLg } from "react-icons/bs";
 import FormField from "../../../components/form/FormField";
 import FormSelect from "../../../components/form/FormSelect";
 
@@ -39,13 +39,30 @@ export default function BookmarkPage() {
   const [categories, setCategories] = useState([]);
   const [form, setForm] = useState(defaultForm);
   const [formDisplay, setFormDisplay] = useState(false);
+  const [formBtnIsEdit, setFormBtnIsEdit] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
+  const [bookmarkSlug, setBookmarkSlug] = useState("");
 
   const handleGetBookmarks = async () => {
     const response = await getAllBookmarks();
     const bookmarks = response.data.data.bookmarks;
 
     setBookmarks(bookmarks);
+  };
+
+  const handleGetCategories = async () => {
+    const response = await getAllCategories();
+    const categories = response.data.data.categories;
+
+    setCategories(categories);
+  };
+
+  const handleUpdateBookmark = async () => {
+    try {
+      const updated: any = await updateBookmark(bookmarkSlug, form);
+    } catch (err: any) {
+      alert(err);
+    }
   };
 
   const handleDeleteBookmark = async (slug: string) => {
@@ -60,13 +77,6 @@ export default function BookmarkPage() {
   useEffect(() => {
     handleGetBookmarks();
   }, []);
-
-  const handleGetCategories = async () => {
-    const response = await getAllCategories();
-    const categories = response.data.data.categories;
-
-    setCategories(categories);
-  };
 
   useEffect(() => {
     handleGetCategories();
@@ -134,7 +144,56 @@ export default function BookmarkPage() {
               }}
             />
           </div>
-          <Button
+          {formBtnIsEdit === false ? (
+            <Button
+              btnColor="blue"
+              icon={
+                <div className="mr-1">
+                  <FaPlus />
+                </div>
+              }
+              text="Add"
+              onClick={async (e: any) => {
+                await handleAddNewBookmark();
+                setForm(defaultForm);
+                await handleGetBookmarks();
+              }}
+            />
+          ) : (
+            <div className="flex">
+              <Button
+                btnColor="outlineGray"
+                icon={
+                  <div className="mr-1">
+                    <FaArrowLeft />
+                  </div>
+                }
+                text="Cancel"
+                onClick={async (e: any) => {
+                  setFormBtnIsEdit(false);
+                  setForm(defaultForm);
+                  setFormDisplay(false);
+                }}
+              />
+              <Button
+                btnColor="yellow"
+                icon={
+                  <div className="mr-1">
+                    <FaEdit />
+                  </div>
+                }
+                text="Edit"
+                onClick={async (e: any) => {
+                  await handleUpdateBookmark();
+                  setFormBtnIsEdit(false);
+                  setForm(defaultForm);
+                  setFormDisplay(false);
+                  await handleGetBookmarks();
+                }}
+              />
+            </div>
+          )}
+          {/* <Button
             btnColor="blue"
             icon={
               <div className="mr-1">
@@ -147,7 +206,7 @@ export default function BookmarkPage() {
               setForm(defaultForm);
               await handleGetBookmarks();
             }}
-          />
+          /> */}
         </>
       )
     );
@@ -177,16 +236,20 @@ export default function BookmarkPage() {
               <TableData>
                 <div className="flex items-center">
                   <div className="ml-2">
-                    <ButtonLink
+                    <Button
                       name="Edit"
-                      href={`/manage/bookmarks/${bookmark.slug}`}
                       btnColor={"yellow"}
                       icon={<FaEdit />}
+                      onClick={async (e: any) => {
+                        setForm({ ...bookmark });
+                        setBookmarkSlug(bookmark.slug);
+                        setFormBtnIsEdit(true);
+                        setFormDisplay(true);
+                      }}
                     />
                   </div>
                   <Button
                     name="Delete"
-                    href={`/manage/bookmarks/${bookmark.slug}`}
                     btnColor={"red"}
                     icon={<FaTrashAlt />}
                     onClick={async (e: any) => {

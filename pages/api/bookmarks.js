@@ -15,4 +15,6 @@ export const insertBookmark = async (bookmark) => {
   return await axios.post(`${domain}`, bookmark);
 }
 
+export const updateBookmark = async (slug, bookmark) => await axios.patch(`${domain}${slug}`, bookmark);
+
 export const deleteBookmark = async (slug) => await axios.delete(`${domain}${slug}`);

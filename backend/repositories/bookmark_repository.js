@@ -52,7 +52,7 @@ class BookmarkRepository {
   async update(slug, bookmark) {
     await Bookmark(this.connection, DataTypes)
       .update(
-        { ...role, updatedAt: new Date() },
+        { ...bookmark, updatedAt: new Date() },
         {
           where: { slug: slug }
         });

@@ -11,11 +11,13 @@ import {
   addNewCategory,
   deleteCategory,
   getAllCategories,
+  updateCategory,
 } from "../../api/category";
 import TableHead from "../../../components/table/TableHead";
 import TableRow from "../../../components/table/TableRow";
 import TableData from "../../../components/table/TableData";
 import {
+  FaArrowLeft,
   FaChevronDown,
   FaChevronUp,
   FaEdit,
@@ -31,13 +33,31 @@ export default function CategoryPage() {
   };
   const [form, setForm] = useState(defaultForm);
   const [formDisplay, setFormDisplay] = useState(false);
+  const [formBtnIsEdit, setFormBtnIsEdit] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [categorySlug, setCategorySlug] = useState("");
 
   const handleGetCategories = async () => {
     const response = await getAllCategories();
     const categories = response.data.data.categories;
 
     setCategories(categories);
+  };
+
+  const handleAddNewCategory = async () => {
+    try {
+      const added: any = await addNewCategory(form);
+    } catch (err: any) {
+      alert(err);
+    }
+  };
+
+  const handleUpdateCategory = async () => {
+    try {
+      const updated: any = await updateCategory(categorySlug, form);
+    } catch (err: any) {
+      alert(err);
+    }
   };
 
   const handleDeleteCategory = async (slug: string) => {
@@ -71,16 +91,20 @@ export default function CategoryPage() {
               <TableData>
                 <div className="flex items-center">
                   <div className="ml-2">
-                    <ButtonLink
+                    <Button
                       name="Edit"
-                      href={`/manage/categories/${category.slug}`}
                       btnColor={"yellow"}
                       icon={<FaEdit />}
+                      onClick={async (e: any) => {
+                        setForm({ ...category });
+                        setCategorySlug(category.slug);
+                        setFormBtnIsEdit(true);
+                        setFormDisplay(true);
+                      }}
                     />
                   </div>
                   <Button
-                    name="Edit"
-                    href={`/manage/categories/${category.slug}`}
+                    name="Delete"
                     btnColor={"red"}
                     icon={<FaTrashAlt />}
                     onClick={async (e: any) => {
@@ -96,14 +120,6 @@ export default function CategoryPage() {
       : "";
   };
 
-  const handleAddNewCategory = async () => {
-    try {
-      const added: any = await addNewCategory(form);
-    } catch (err: any) {
-      alert(err);
-    }
-  };
-
   const renderForm = () => {
     return (
       formDisplay && (
@@ -115,23 +131,59 @@ export default function CategoryPage() {
               value={form.name}
               onChange={(e: any) => {
                 setForm({ ...form, name: e.target.value });
+                setFormDisplay(true);
               }}
             />
           </div>
-          <Button
-            btnColor="blue"
-            icon={
-              <div className="mr-1">
-                <FaPlus />
-              </div>
-            }
-            text="Add"
-            onClick={async (e: any) => {
-              await handleAddNewCategory();
-              setForm(defaultForm);
-              await handleGetCategories();
-            }}
-          />
+          {formBtnIsEdit === false ? (
+            <Button
+              btnColor="blue"
+              icon={
+                <div className="mr-1">
+                  <FaPlus />
+                </div>
+              }
+              text="Add"
+              onClick={async (e: any) => {
+                await handleAddNewCategory();
+                setForm(defaultForm);
+                await handleGetCategories();
+              }}
+            />
+          ) : (
+            <div className="flex">
+              <Button
+                btnColor="outlineGray"
+                icon={
+                  <div className="mr-1">
+                    <FaArrowLeft />
+                  </div>
+                }
+                text="Cancel"
+                onClick={async (e: any) => {
+                  setFormBtnIsEdit(false);
+                  setForm(defaultForm);
+                  setFormDisplay(false);
+                }}
+              />
+              <Button
+                btnColor="yellow"
+                icon={
+                  <div className="mr-1">
+                    <FaEdit />
+                  </div>
+                }
+                text="Edit"
+                onClick={async (e: any) => {
+                  await handleUpdateCategory();
+                  setFormBtnIsEdit(false);
+                  setForm(defaultForm);
+                  setFormDisplay(false);
+                  await handleGetCategories();
+                }}
+              />
+            </div>
+          )}
         </>
       )
     );

@@ -49,10 +49,10 @@ class CategoryRepository {
     return created;
   }
 
-  async update(slug, Category) {
+  async update(slug, category) {
     await Category(this.connection, DataTypes)
       .update(
-        { ...role, updatedAt: new Date() },
+        { ...category, updatedAt: new Date() },
         {
           where: { slug: slug }
         });
