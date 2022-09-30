@@ -7,7 +7,7 @@ import ManageHeader from "../../../components/ManageHeader";
 import TableContainer from "../../../components/table/TableContainer";
 import TableHeader from "../../../components/table/TableHeader";
 import TableBody from "../../../components/table/TableBody";
-import { getAllCategories } from "../../api/category";
+import { addNewCategory, getAllCategories } from "../../api/category";
 import TableHead from "../../../components/table/TableHead";
 import TableRow from "../../../components/table/TableRow";
 import TableData from "../../../components/table/TableData";
@@ -82,6 +82,14 @@ export default function CategoryPage() {
       : "";
   };
 
+  const handleAddNewCategory = async () => {
+    try {
+      const added: any = await addNewCategory(form);
+    } catch (err: any) {
+      alert(err);
+    }
+  };
+
   const renderForm = () => {
     return formDisplay === true ? (
       <>
@@ -89,6 +97,7 @@ export default function CategoryPage() {
           <FormField
             name="name"
             type="text"
+            value={form.name}
             onChange={(e: any) => {
               setForm({ ...form, name: e.target.value });
             }}
@@ -103,9 +112,9 @@ export default function CategoryPage() {
           }
           text="Add"
           onClick={(e: any) => {
-            console.log(form);
-
-            // handleAddNewBookmark();
+            handleAddNewCategory();
+            setForm(defaultForm);
+            handleGetCategories();
           }}
         />
       </>

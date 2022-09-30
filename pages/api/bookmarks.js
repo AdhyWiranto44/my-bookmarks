@@ -11,6 +11,6 @@ export const findBookmarks = async (description = '') => {
   return await axios.get(`${domain}?description=${description}&limit=10&skip=0`);
 }
 
-export const insertBookmark = async (bookmark = {}) => {
-  return await axios.post(`${domain}`);
+export const insertBookmark = async (bookmark) => {
+  return await axios.post(`${domain}`, bookmark);
 }

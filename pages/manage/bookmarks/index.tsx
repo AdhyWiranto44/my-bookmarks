@@ -30,7 +30,7 @@ export default function BookmarkPage() {
     name: "",
     description: "",
     url: "",
-    category: 0,
+    category: "",
   };
   const [categories, setCategories] = useState([]);
   const [form, setForm] = useState(defaultForm);
@@ -60,14 +60,17 @@ export default function BookmarkPage() {
   }, []);
 
   const handleAddNewBookmark = async () => {
-    await insertBookmark(form);
-    handleGetBookmarks();
+    try {
+      const added: any = await insertBookmark(form);
+    } catch (err: any) {
+      alert(err);
+    }
   };
 
   const renderCategories = () => {
     return categories.map((category, idx) => {
       return (
-        <option key={idx} value={category.id}>
+        <option key={idx} value={category.slug}>
           {category.name}
         </option>
       );
@@ -81,6 +84,7 @@ export default function BookmarkPage() {
           <FormField
             name="name"
             type="text"
+            value={form.name}
             onChange={(e: any) => {
               setForm({ ...form, name: e.target.value });
             }}
@@ -90,6 +94,7 @@ export default function BookmarkPage() {
           <FormField
             name="description"
             type="text"
+            value={form.description}
             onChange={(e: any) => {
               setForm({ ...form, description: e.target.value });
             }}
@@ -99,6 +104,7 @@ export default function BookmarkPage() {
           <FormField
             name="url"
             type="text"
+            value={form.url}
             onChange={(e: any) => {
               setForm({ ...form, url: e.target.value });
             }}
@@ -110,7 +116,7 @@ export default function BookmarkPage() {
             defaultValue="0"
             loopData={renderCategories}
             onChange={(e: any) => {
-              setForm({ ...form, category: parseInt(e.target.value) });
+              setForm({ ...form, category: e.target.value });
             }}
           />
         </div>
@@ -123,9 +129,9 @@ export default function BookmarkPage() {
           }
           text="Add"
           onClick={(e: any) => {
-            console.log(form);
-
-            // handleAddNewBookmark();
+            handleAddNewBookmark();
+            setForm(defaultForm);
+            handleGetBookmarks();
           }}
         />
       </>
