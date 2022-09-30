@@ -4,7 +4,11 @@ import { IoChevronBack } from "react-icons/io5";
 import ManageLayout from "../../../layouts/manageLayout";
 import ManageHeader from "../../../components/ManageHeader";
 import { useEffect, useState } from "react";
-import { getAllBookmarks, insertBookmark } from "../../api/bookmarks";
+import {
+  deleteBookmark,
+  getAllBookmarks,
+  insertBookmark,
+} from "../../api/bookmarks";
 import {
   FaArrowUp,
   FaChevronDown,
@@ -42,6 +46,15 @@ export default function BookmarkPage() {
     const bookmarks = response.data.data.bookmarks;
 
     setBookmarks(bookmarks);
+  };
+
+  const handleDeleteBookmark = async (slug: string) => {
+    try {
+      const wantToDelete: boolean = confirm(`Delete ${slug}`);
+      wantToDelete && (await deleteBookmark(slug));
+    } catch (err: any) {
+      alert(err);
+    }
   };
 
   useEffect(() => {
@@ -172,12 +185,13 @@ export default function BookmarkPage() {
                     />
                   </div>
                   <Button
-                    name="Edit"
+                    name="Delete"
                     href={`/manage/bookmarks/${bookmark.slug}`}
                     btnColor={"red"}
                     icon={<FaTrashAlt />}
                     onClick={(e: any) => {
-                      console.log(bookmark.slug);
+                      handleDeleteBookmark(bookmark.slug);
+                      handleGetBookmarks();
                     }}
                   />
                 </div>

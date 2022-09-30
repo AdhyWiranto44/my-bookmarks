@@ -7,7 +7,11 @@ import ManageHeader from "../../../components/ManageHeader";
 import TableContainer from "../../../components/table/TableContainer";
 import TableHeader from "../../../components/table/TableHeader";
 import TableBody from "../../../components/table/TableBody";
-import { addNewCategory, getAllCategories } from "../../api/category";
+import {
+  addNewCategory,
+  deleteCategory,
+  getAllCategories,
+} from "../../api/category";
 import TableHead from "../../../components/table/TableHead";
 import TableRow from "../../../components/table/TableRow";
 import TableData from "../../../components/table/TableData";
@@ -34,6 +38,15 @@ export default function CategoryPage() {
     const categories = response.data.data.categories;
 
     setCategories(categories);
+  };
+
+  const handleDeleteCategory = async (slug: string) => {
+    try {
+      const wantToDelete: boolean = confirm(`Delete ${slug}`);
+      wantToDelete && (await deleteCategory(slug));
+    } catch (err: any) {
+      alert(err);
+    }
   };
 
   useEffect(() => {
@@ -71,7 +84,8 @@ export default function CategoryPage() {
                     btnColor={"red"}
                     icon={<FaTrashAlt />}
                     onClick={(e: any) => {
-                      console.log(category.slug);
+                      handleDeleteCategory(category.slug);
+                      handleGetCategories();
                     }}
                   />
                 </div>

@@ -14,3 +14,5 @@ export const findBookmarks = async (description = '') => {
 export const insertBookmark = async (bookmark) => {
   return await axios.post(`${domain}`, bookmark);
 }
+
+export const deleteBookmark = async (slug) => await axios.delete(`${domain}${slug}`);
