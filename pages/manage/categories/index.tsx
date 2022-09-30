@@ -11,10 +11,22 @@ import { getAllCategories } from "../../api/category";
 import TableHead from "../../../components/table/TableHead";
 import TableRow from "../../../components/table/TableRow";
 import TableData from "../../../components/table/TableData";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import {
+  FaChevronDown,
+  FaChevronUp,
+  FaEdit,
+  FaPlus,
+  FaTrashAlt,
+} from "react-icons/fa";
 import Button from "../../../components/Button";
+import FormField from "../../../components/form/FormField";
 
 export default function CategoryPage() {
+  const defaultForm: any = {
+    name: "",
+  };
+  const [form, setForm] = useState(defaultForm);
+  const [formDisplay, setFormDisplay] = useState(false);
   const [categories, setCategories] = useState([]);
 
   const handleGetCategories = async () => {
@@ -70,6 +82,38 @@ export default function CategoryPage() {
       : "";
   };
 
+  const renderForm = () => {
+    return formDisplay === true ? (
+      <>
+        <div className="mb-3">
+          <FormField
+            name="name"
+            type="text"
+            onChange={(e: any) => {
+              setForm({ ...form, name: e.target.value });
+            }}
+          />
+        </div>
+        <Button
+          btnColor="blue"
+          icon={
+            <div className="mr-1">
+              <FaPlus />
+            </div>
+          }
+          text="Add"
+          onClick={(e: any) => {
+            console.log(form);
+
+            // handleAddNewBookmark();
+          }}
+        />
+      </>
+    ) : (
+      ""
+    );
+  };
+
   return (
     <ManageLayout>
       <ManageHeader>
@@ -86,6 +130,32 @@ export default function CategoryPage() {
           <Heading1 text="List of Categories" />
         </div>
       </ManageHeader>
+      <div className="inline-block">
+        <Button
+          btnColor="outlineBlue"
+          icon={
+            formDisplay === false ? (
+              <div className="mr-1">
+                <FaChevronUp />
+              </div>
+            ) : (
+              <div className="mr-1">
+                <FaChevronDown />
+              </div>
+            )
+          }
+          text="Add new"
+          onClick={(e: any) => {
+            if (formDisplay === true) {
+              setFormDisplay(false);
+              setForm(defaultForm);
+            } else {
+              setFormDisplay(true);
+            }
+          }}
+        />
+      </div>
+      <div className="">{renderForm()}</div>
       <div className="text-black mt-4 overflow-x-scroll">
         <TableContainer>
           <TableHeader>
