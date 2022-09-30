@@ -137,6 +137,7 @@ export default function BookmarkPage() {
           <div className="mb-3">
             <FormSelect
               name="category"
+              selectedValue={form.category}
               defaultValue="0"
               loopData={renderCategories}
               onChange={(e: any) => {
@@ -193,20 +194,6 @@ export default function BookmarkPage() {
               />
             </div>
           )}
-          {/* <Button
-            btnColor="blue"
-            icon={
-              <div className="mr-1">
-                <FaPlus />
-              </div>
-            }
-            text="Add"
-            onClick={async (e: any) => {
-              await handleAddNewBookmark();
-              setForm(defaultForm);
-              await handleGetBookmarks();
-            }}
-          /> */}
         </>
       )
     );
