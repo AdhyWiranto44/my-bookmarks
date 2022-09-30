@@ -22,6 +22,8 @@ import TableRow from "../../../components/table/TableRow";
 import TableData from "../../../components/table/TableData";
 import { getAllCategories } from "../../api/category";
 import { BsXLg } from "react-icons/bs";
+import FormField from "../../../components/form/FormField";
+import FormSelect from "../../../components/form/FormSelect";
 
 export default function BookmarkPage() {
   const defaultForm: any = {
@@ -76,51 +78,41 @@ export default function BookmarkPage() {
     return formDisplay === true ? (
       <>
         <div className="mb-3">
-          <label className="block" htmlFor="name">
-            Name
-          </label>
-          <input
-            className=""
-            type="text"
+          <FormField
             name="name"
+            type="text"
             onChange={(e: any) => {
               setForm({ ...form, name: e.target.value });
             }}
           />
         </div>
         <div className="mb-3">
-          <label className="block" htmlFor="description">
-            Description
-          </label>
-          <input
-            type="text"
+          <FormField
             name="description"
+            type="text"
             onChange={(e: any) => {
               setForm({ ...form, description: e.target.value });
             }}
           />
         </div>
         <div className="mb-3">
-          <label className="block" htmlFor="url">
-            Url
-          </label>
-          <input
-            type="text"
+          <FormField
             name="url"
+            type="text"
             onChange={(e: any) => {
               setForm({ ...form, url: e.target.value });
             }}
           />
         </div>
         <div className="mb-3">
-          <select
-            onChange={(e) => {
+          <FormSelect
+            name="category"
+            defaultValue="0"
+            loopData={renderCategories}
+            onChange={(e: any) => {
               setForm({ ...form, category: parseInt(e.target.value) });
             }}
-          >
-            <option value="0">-- Select category --</option>
-            {renderCategories()}
-          </select>
+          />
         </div>
         <Button
           btnColor="blue"
