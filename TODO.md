@@ -3,7 +3,7 @@
 - [x] fix searchbar text color
 - [x] style the bookmark form
 - [x] style the category form
-- [] homepage: option button to copy url button
+- [x] homepage: option button to copy url button
 - [] manage bookmarks page: loading icon while load data
 - [] manage categories page: loading icon while load data
 - [x] homepage: filter bookmark by category
