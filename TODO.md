@@ -1,6 +1,6 @@
 # To Do List for My Bookmarks
 
-- [] fix searchbar text color
+- [x] fix searchbar text color
 - [] style the bookmark form
 - [] style the category form
 - [] homepage: option button
