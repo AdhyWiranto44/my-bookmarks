@@ -28,6 +28,8 @@ import TableData from "../../../components/table/TableData";
 import { getAllCategories } from "../../api/category";
 import FormField from "../../../components/form/FormField";
 import FormSelect from "../../../components/form/FormSelect";
+import Loading from "../../../components/Loading";
+import DataNotFound from "../../../components/DataNotFound";
 
 export default function BookmarkPage() {
   const defaultForm: any = {
@@ -36,6 +38,7 @@ export default function BookmarkPage() {
     url: "",
     category: "",
   };
+  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [form, setForm] = useState(defaultForm);
   const [formDisplay, setFormDisplay] = useState(false);
@@ -48,6 +51,7 @@ export default function BookmarkPage() {
     const bookmarks = response.data.data.bookmarks;
 
     setBookmarks(bookmarks);
+    setLoading(false);
   };
 
   const handleGetCategories = async () => {
@@ -210,8 +214,9 @@ export default function BookmarkPage() {
   };
 
   const renderBookmarkRows = () => {
-    return bookmarks.length > 0
-      ? bookmarks.map((bookmark, idx) => {
+    if (!loading) {
+      return bookmarks.length > 0 ? (
+        bookmarks.map((bookmark, idx) => {
           return (
             <TableRow key={idx} num={idx}>
               <TableData>{bookmark.name}</TableData>
@@ -249,7 +254,12 @@ export default function BookmarkPage() {
             </TableRow>
           );
         })
-      : "";
+      ) : (
+        <DataNotFound />
+      );
+    } else {
+      return <Loading />;
+    }
   };
 
   return (

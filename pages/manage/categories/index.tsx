@@ -26,11 +26,14 @@ import {
 } from "react-icons/fa";
 import Button from "../../../components/Button";
 import FormField from "../../../components/form/FormField";
+import DataNotFound from "../../../components/DataNotFound";
+import Loading from "../../../components/Loading";
 
 export default function CategoryPage() {
   const defaultForm: any = {
     name: "",
   };
+  const [loading, setLoading] = useState(true);
   const [form, setForm] = useState(defaultForm);
   const [formDisplay, setFormDisplay] = useState(false);
   const [formBtnIsEdit, setFormBtnIsEdit] = useState(false);
@@ -42,6 +45,7 @@ export default function CategoryPage() {
     const categories = response.data.data.categories;
 
     setCategories(categories);
+    setLoading(false);
   };
 
   const handleAddNewCategory = async () => {
@@ -83,8 +87,9 @@ export default function CategoryPage() {
   };
 
   const renderCategoryRows = () => {
-    return categories.length > 0
-      ? categories.map((category, idx) => {
+    if (!loading) {
+      return categories.length > 0 ? (
+        categories.map((category, idx) => {
           return (
             <TableRow key={idx} num={idx}>
               <TableData>{category.name}</TableData>
@@ -117,7 +122,12 @@ export default function CategoryPage() {
             </TableRow>
           );
         })
-      : "";
+      ) : (
+        <DataNotFound />
+      );
+    } else {
+      return <Loading />;
+    }
   };
 
   const renderForm = () => {
