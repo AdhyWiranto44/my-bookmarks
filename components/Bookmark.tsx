@@ -5,11 +5,11 @@ export default function Bookmark(props: any) {
   return (
     <a
       href={props.url || "#"}
-      className="bg-white opacity-75 hover:opacity-100 m-3 rounded-xl bg-[url('../public/web-placeholder.jpg')] bg-center bg-opacity-10 bg-cover duration-300 hover:shadow-custom border border-gray-300"
+      className="bg-white opacity-75 hover:opacity-100 m-3 rounded-xl bg-[url('../public/web-placeholder.jpg')] bg-center bg-opacity-10 bg-cover duration-300 hover:shadow-custom border border-gray-300 h-half-screen relative"
     >
-      <div className="bg-white bg-opacity-80 p-3 mt-40 rounded-b-xl backdrop-blur-md">
+      <div className="bg-white bg-opacity-80 p-3 rounded-b-xl backdrop-blur-md absolute w-full bottom-0">
         <div className="flex justify-between items-center mb-3">
-          <div className="break-all">
+          <div className="break-before-right">
             <h3 className="font-semibold text-xl text-black">{props.name}</h3>
             <p className="text-gray-800">{props.description}</p>
           </div>

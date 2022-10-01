@@ -9,6 +9,9 @@ module.exports = {
     extend: {
       boxShadow: {
         'custom': '10px 10px #181818'
+      },
+      height: {
+        'half-screen': '50vh'
       }
     },
   },
