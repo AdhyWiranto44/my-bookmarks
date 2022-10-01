@@ -1,4 +1,5 @@
 import { BsThreeDotsVertical, BsGlobe } from "react-icons/bs";
+import { MdContentCopy } from "react-icons/md";
 import ButtonLink from "./ButtonLink";
 
 export default function Bookmark(props: any) {
@@ -13,8 +14,16 @@ export default function Bookmark(props: any) {
             <h3 className="font-semibold text-xl text-black">{props.name}</h3>
             <p className="text-gray-800">{props.description}</p>
           </div>
-          <button className="mx-2 rounded-full duration-300 hover:bg-gray-200 p-2">
-            <BsThreeDotsVertical className="text-xl text-black" />
+          <button
+            className="mx-2 rounded-full duration-300 hover:bg-gray-200 p-2"
+            title="Copy Url"
+            onClick={(e: any) => {
+              e.preventDefault();
+              navigator.clipboard.writeText(props.url);
+              alert(`Url Copied! ${props.url}`);
+            }}
+          >
+            <MdContentCopy className="text-xl text-black" />
           </button>
         </div>
         <div className="flex">
