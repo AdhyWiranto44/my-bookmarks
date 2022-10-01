@@ -4,8 +4,8 @@
 - [x] style the bookmark form
 - [x] style the category form
 - [x] homepage: option button to copy url button
-- [] manage bookmarks page: loading icon while load data
-- [] manage categories page: loading icon while load data
+- [x] manage bookmarks page: loading icon while load data
+- [x] manage categories page: loading icon while load data
 - [x] homepage: filter bookmark by category
 - [] manage bookmarks page: searchbar
 - [] manage categories page: searchbar
