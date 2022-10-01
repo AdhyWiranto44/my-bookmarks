@@ -18,7 +18,7 @@ export default function Searchbar(props: any) {
   return (
     <div className="bg-white border rounded-xl flex items-center">
       <input
-        className="rounded-lg mx-2 px-4 py-2 w-full bg-white"
+        className="rounded-lg mx-2 px-4 py-2 w-full bg-white text-black"
         type="text"
         onKeyUp={(e: any) => {
           handleFindBookmark(e.target.value);
