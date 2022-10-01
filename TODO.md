@@ -1,8 +1,8 @@
 # To Do List for My Bookmarks
 
 - [x] fix searchbar text color
-- [] style the bookmark form
-- [] style the category form
+- [x] style the bookmark form
+- [x] style the category form
 - [] homepage: option button
 - [] manage bookmarks page: loading icon while load data
 - [] manage categories page: loading icon while load data
