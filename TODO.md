@@ -3,14 +3,15 @@
 - [x] fix searchbar text color
 - [x] style the bookmark form
 - [x] style the category form
-- [] homepage: option button
+- [] homepage: option button to copy url button
 - [] manage bookmarks page: loading icon while load data
 - [] manage categories page: loading icon while load data
-- [] homepage: filter bookmark by category
+- [x] homepage: filter bookmark by category
 - [] manage bookmarks page: searchbar
 - [] manage categories page: searchbar
 - [] style the light and dark mode
 - [] image preview
+- [] searchbar: find all if search term is empty string
 
 - [x] Homepage
 

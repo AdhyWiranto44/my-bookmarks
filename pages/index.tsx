@@ -34,7 +34,7 @@ export default function Home() {
           setBookmarks={setBookmarks}
           placeholder="Find by description"
         />
-        <Filter />
+        <Filter bookmarks={bookmarks} setBookmarks={setBookmarks} />
       </div>
       <div className="px-4 lg:px-44">
         <Bookmarks bookmarks={bookmarks} />

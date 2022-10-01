@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import {
+  findBookmarksByCategory,
+  getAllBookmarks,
+} from "../pages/api/bookmarks";
 import { getAllCategories } from "../pages/api/category";
 
-export default function Filter() {
+export default function Filter({ bookmarks, setBookmarks }: any) {
   const [categories, setCategories] = useState([]);
 
   const handleGetCategories = async () => {
@@ -9,6 +13,22 @@ export default function Filter() {
     const categories = response.data.data.categories;
 
     setCategories(categories);
+  };
+
+  const handleFindBookmarksByCategory = async (category = "") => {
+    try {
+      let response = null;
+
+      if (category !== "") {
+        response = await findBookmarksByCategory(category);
+        setBookmarks(response.data.data.bookmarks);
+      } else {
+        response = await getAllBookmarks();
+        setBookmarks(response.data.data.bookmarks);
+      }
+    } catch (err: any) {
+      alert(err);
+    }
   };
 
   useEffect(() => {
@@ -30,13 +50,16 @@ export default function Filter() {
   };
 
   return (
-    <>
-      <select className="text-violet-500 font-bold bg-transparent mt-4 cursor-pointer">
-        <option className="font-normal" value="">
-          Choose category
-        </option>
-        {renderFilters()}
-      </select>
-    </>
+    <select
+      className="text-violet-500 font-bold bg-transparent mt-4 cursor-pointer"
+      onChange={async (e: any) => {
+        handleFindBookmarksByCategory(e.target.value);
+      }}
+    >
+      <option className="font-normal" value="">
+        Choose category
+      </option>
+      {renderFilters()}
+    </select>
   );
 }
