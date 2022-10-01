@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { getAllBookmarks } from "./api/bookmarks";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
   const [bookmarks, setBookmarks] = useState([]);
 
   const handleGetBookmarks = async () => {
@@ -13,6 +14,15 @@ export default function Home() {
     const bookmarks = response.data.data.bookmarks;
 
     setBookmarks(bookmarks);
+    setLoading(false);
+  };
+
+  const renderBookmarks = () => {
+    if (loading) {
+      return <h1 className="text-xl text-black">Loading...</h1>;
+    } else {
+      return <Bookmarks bookmarks={bookmarks} />;
+    }
   };
 
   useEffect(() => {
@@ -36,9 +46,7 @@ export default function Home() {
         />
         <Filter bookmarks={bookmarks} setBookmarks={setBookmarks} />
       </div>
-      <div className="px-4 lg:px-44">
-        <Bookmarks bookmarks={bookmarks} />
-      </div>
+      <div className="px-4 lg:px-44">{renderBookmarks()}</div>
     </>
   );
 }
