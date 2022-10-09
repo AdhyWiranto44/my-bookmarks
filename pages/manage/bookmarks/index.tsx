@@ -304,7 +304,7 @@ export default function BookmarkPage() {
         />
       </div>
       <div className="">{renderForm()}</div>
-      <div className="text-black mt-4 overflow-x-scroll">
+      <div className="text-black mt-4 overflow-x-auto">
         <TableContainer>
           <TableHeader>
             {renderTableHeaders()}
