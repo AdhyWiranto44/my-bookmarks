@@ -9,9 +9,9 @@
 - [x] homepage: filter bookmark by category
 - [x] manage bookmarks page: searchbar
 - [x] manage categories page: searchbar
-- [] style the light and dark mode
+- [x] style the light and dark mode
 - [] image preview
-- [] searchbar: find all if search term is empty string
+- [x] searchbar: find all if search term is empty string
 
 - [x] Homepage
 

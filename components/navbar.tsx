@@ -4,7 +4,7 @@ import { BsGearFill } from "react-icons/bs";
 
 export default function Navbar(props: any) {
   return (
-    <header className="bg-gray-100 bg-opacity-70 backdrop-blur-sm flex items-center justify-between py-4 px-4 lg:px-10 sticky top-0 z-10">
+    <header className="bg-gray-100 dark:bg-slate-900 bg-opacity-70 dark:bg-opacity-70 backdrop-blur-sm flex items-center justify-between py-4 px-4 lg:px-10 sticky top-0 z-10">
       <Heading1 text={props.headingText} />
       <ButtonLink
         href="/manage"

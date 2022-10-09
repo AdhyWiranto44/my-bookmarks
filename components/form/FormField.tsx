@@ -1,11 +1,14 @@
 export default function FormField({ name, type, value, onChange }: any) {
   return (
     <>
-      <label className="block text-black mb-1" htmlFor={name || ""}>
+      <label
+        className="block text-black dark:text-gray-100 mb-1"
+        htmlFor={name || ""}
+      >
         {name || ""}
       </label>
       <input
-        className="bg-white text-black px-3 py-2 rounded-md border w-full md:w-4/12"
+        className="bg-white dark:bg-black text-black dark:text-white px-3 py-2 rounded-md border dark:border-slate-600 w-full md:w-4/12"
         type={type || ""}
         name={name || ""}
         value={value || ""}

@@ -3,9 +3,9 @@ import { HiOutlineSearch } from "react-icons/hi";
 
 export default function Searchbar({ onkeyup, placeholder }: any) {
   return (
-    <div className="bg-white border rounded-xl flex items-center">
+    <div className="bg-white dark:bg-black border dark:border-slate-600 rounded-xl flex items-center">
       <input
-        className="rounded-lg mx-2 px-4 py-2 w-full bg-white text-black"
+        className="rounded-lg mx-2 px-4 py-2 w-full bg-white dark:bg-black text-black dark:text-white"
         type="text"
         onKeyUp={onkeyup}
         placeholder={placeholder}
