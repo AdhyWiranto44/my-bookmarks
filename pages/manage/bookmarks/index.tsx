@@ -30,6 +30,8 @@ import FormField from "../../../components/form/FormField";
 import FormSelect from "../../../components/form/FormSelect";
 import Loading from "../../../components/Loading";
 import DataNotFound from "../../../components/DataNotFound";
+import Searchbar from "../../../components/Searchbar";
+import BookmarkSearchbar from "../../../components/BookmarkSearchbar";
 
 export default function BookmarkPage() {
   const defaultForm: any = {
@@ -304,6 +306,12 @@ export default function BookmarkPage() {
         />
       </div>
       <div className="">{renderForm()}</div>
+      <div className="mx-auto w-full lg:w-6/12">
+        <BookmarkSearchbar
+          setBookmarks={setBookmarks}
+          placeholder={"Find bookmarks by description"}
+        />
+      </div>
       <div className="text-black mt-4 overflow-x-auto">
         <TableContainer>
           <TableHeader>

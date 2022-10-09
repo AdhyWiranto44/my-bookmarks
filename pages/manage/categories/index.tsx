@@ -28,6 +28,7 @@ import Button from "../../../components/Button";
 import FormField from "../../../components/form/FormField";
 import DataNotFound from "../../../components/DataNotFound";
 import Loading from "../../../components/Loading";
+import CategorySearchbar from "../../../components/CategorySearchbar";
 
 export default function CategoryPage() {
   const defaultForm: any = {
@@ -241,6 +242,12 @@ export default function CategoryPage() {
         />
       </div>
       <div className="">{renderForm()}</div>
+      <div className="mx-auto w-full lg:w-6/12">
+        <CategorySearchbar
+          setCategories={setCategories}
+          placeholder={"Find categories by name"}
+        />
+      </div>
       <div className="text-black mt-4 overflow-x-auto">
         <TableContainer>
           <TableHeader>

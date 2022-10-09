@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import Searchbar from "../components/Searchbar";
 import { useState, useEffect } from "react";
 import { getAllBookmarks } from "./api/bookmarks";
+import BookmarkSearchbar from "../components/BookmarkSearchbar";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -39,7 +40,7 @@ export default function Home() {
             <span className="text-gray-400">in</span> My Bookmarks
           </p>
         </div>
-        <Searchbar
+        <BookmarkSearchbar
           bookmarks={bookmarks}
           setBookmarks={setBookmarks}
           placeholder="Find by description"

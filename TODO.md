@@ -7,8 +7,8 @@
 - [x] manage bookmarks page: loading icon while load data
 - [x] manage categories page: loading icon while load data
 - [x] homepage: filter bookmark by category
-- [] manage bookmarks page: searchbar
-- [] manage categories page: searchbar
+- [x] manage bookmarks page: searchbar
+- [x] manage categories page: searchbar
 - [] style the light and dark mode
 - [] image preview
 - [] searchbar: find all if search term is empty string
