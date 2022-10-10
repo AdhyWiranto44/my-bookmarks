@@ -39,7 +39,7 @@ export default function Home() {
             Find Now
           </p>
           <p className="font-semibold text-lg text-gray-900 dark:text-gray-100">
-            <span className="text-gray-400">in</span> My Bookmarks
+            <span className="text-gray-500">in</span> My Bookmarks
           </p>
         </div>
         <BookmarkSearchbar
