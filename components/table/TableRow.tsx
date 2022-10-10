@@ -2,8 +2,8 @@ export default function TableRow(props: any) {
   return (
     <tr
       className={
-        (props.num % 2 === 0 && "bg-blue-100 dark:bg-blue-800") +
-        " hover:bg-blue-200 dark:hover:bg-blue-900"
+        (props.num % 2 === 0 && "bg-slate-200 dark:bg-slate-700") +
+        " hover:bg-slate-300 dark:hover:bg-slate-800"
       }
     >
       {props.children}
