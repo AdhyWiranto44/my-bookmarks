@@ -14,7 +14,7 @@ export default function FormSelect({
         {name || ""}
       </label>
       <select
-        className="bg-white dark:bg-black text-black dark:text-white px-3 py-2 rounded-md border dark:border-slate-600 w-full md:w-4/12"
+        className="bg-opacity-50 dark:bg-opacity-30 bg-white dark:bg-black text-black dark:text-white px-3 py-2 rounded-md border dark:border-slate-600 w-full md:w-4/12"
         onChange={onChange || ""}
         value={selectedValue || "0"}
       >
