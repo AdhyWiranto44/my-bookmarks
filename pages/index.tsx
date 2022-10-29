@@ -4,10 +4,12 @@ import Navbar from "../components/navbar";
 import { useState, useEffect } from "react";
 import { getAllBookmarks } from "./api/bookmarks";
 import BookmarkSearchbar from "../components/BookmarkSearchbar";
+import Favorites from "../components/Favorites";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [bookmarks, setBookmarks] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   const handleGetBookmarks = async () => {
     const response: any = await getAllBookmarks();
@@ -17,6 +19,14 @@ export default function Home() {
     setLoading(false);
   };
 
+  // const handleGetFavorites = async () => {
+  //   const response: any = await getAllFavorites();
+  //   const favorites = response.data.data.favorites;
+
+  //   setFavorites(favorites);
+  //   setLoading(false);
+  // };
+
   const renderBookmarks = () => {
     if (loading) {
       return <h1 className="text-xl text-black">Loading...</h1>;
@@ -25,7 +35,16 @@ export default function Home() {
     }
   };
 
+  const renderFavorites = () => {
+    if (loading) {
+      return <h1 className="text-xl text-black">Loading...</h1>;
+    } else {
+      return <Favorites favorites={favorites} />;
+    }
+  };
+
   useEffect(() => {
+    // handleGetFavorites();
     handleGetBookmarks();
   }, []);
 
@@ -48,6 +67,7 @@ export default function Home() {
         />
         <Filter bookmarks={bookmarks} setBookmarks={setBookmarks} />
       </div>
+      <div className="px-4 lg:px-44 mb-4">{renderFavorites()}</div>
       <div className="px-4 lg:px-44">{renderBookmarks()}</div>
     </>
   );

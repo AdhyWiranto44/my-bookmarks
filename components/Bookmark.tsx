@@ -1,6 +1,6 @@
 import { BsThreeDotsVertical, BsGlobe } from "react-icons/bs";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { MdContentCopy } from "react-icons/md";
-import backgroundColors from "../helpers/backgroundColors";
 import ButtonLink from "./ButtonLink";
 
 export default function Bookmark(props: any) {
@@ -36,7 +36,7 @@ export default function Bookmark(props: any) {
             <MdContentCopy className="text-xl text-black dark:text-white" />
           </button>
         </div>
-        <div className="flex">
+        <div className="flex items-center justify-between">
           <ButtonLink
             href={props.url || "#"}
             text="Visit"
@@ -46,6 +46,21 @@ export default function Bookmark(props: any) {
               </div>
             }
           />
+          <button
+            className="mx-2 rounded-full duration-300 hover:bg-gray-200 dark:hover:bg-gray-800 p-2"
+            title="Set/Unset Favorite"
+            onClick={(e: any) => {
+              e.preventDefault();
+              const isConfirmed = confirm("Want to set/unset favorite?");
+              isConfirmed && alert(`Set/Unset Favorite`);
+            }}
+          >
+            {props.isFavorite ? (
+              <FaHeart className="text-xl text-black dark:text-white" />
+            ) : (
+              <FaRegHeart className="text-xl text-black dark:text-white" />
+            )}
+          </button>
         </div>
       </div>
     </a>
