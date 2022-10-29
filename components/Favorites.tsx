@@ -4,31 +4,6 @@ import DataNotFound from "./DataNotFound";
 
 export default function Favorites(props: any) {
   const renderFavorites = () => {
-    // return (
-    //   <>
-    //     <Bookmark
-    //       key={"123"}
-    //       name={"fv.name"}
-    //       description={"fv.description"}
-    //       url={"fv.url"}
-    //       isFavorite={true}
-    //     />
-    //     <Bookmark
-    //       key={"123"}
-    //       name={"fv.name"}
-    //       description={"fv.description"}
-    //       url={"fv.url"}
-    //       isFavorite={true}
-    //     />
-    //     <Bookmark
-    //       key={"123"}
-    //       name={"fv.name"}
-    //       description={"fv.description"}
-    //       url={"fv.url"}
-    //       isFavorite={true}
-    //     />
-    //   </>
-    // );
     return props.favorites.length > 0 ? (
       props.favorites.map((fv: any, idx: any) => {
         return (
@@ -37,6 +12,7 @@ export default function Favorites(props: any) {
             name={fv.name}
             description={fv.description}
             url={fv.url}
+            isFavorite={true}
           />
         );
       })
