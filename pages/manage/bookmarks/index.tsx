@@ -15,6 +15,7 @@ import {
   FaChevronDown,
   FaChevronUp,
   FaEdit,
+  FaHome,
   FaPlus,
   FaTrashAlt,
 } from "react-icons/fa";
@@ -276,6 +277,15 @@ export default function BookmarkPage() {
             </>
           }
         />
+        <ButtonLink
+          text=""
+          href="/"
+          icon={
+            <>
+              <FaHome />
+            </>
+          }
+        />
         <div className="ml-2">
           <Heading1 text="List of Bookmarks" />
         </div>
@@ -305,7 +315,7 @@ export default function BookmarkPage() {
           }}
         />
       </div>
-      <div className="">{renderForm()}</div>
+      <div className="mt-3">{renderForm()}</div>
       <div className="mx-auto w-full lg:w-6/12">
         <BookmarkSearchbar
           setBookmarks={setBookmarks}

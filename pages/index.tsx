@@ -1,7 +1,6 @@
 import Bookmarks from "../components/Bookmarks";
 import Filter from "../components/Filter";
 import Navbar from "../components/navbar";
-import Searchbar from "../components/Searchbar";
 import { useState, useEffect } from "react";
 import { getAllBookmarks } from "./api/bookmarks";
 import BookmarkSearchbar from "../components/BookmarkSearchbar";
