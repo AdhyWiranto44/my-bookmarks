@@ -3,6 +3,7 @@ import Filter from "../components/Filter";
 import Navbar from "../components/navbar";
 import { useState, useEffect } from "react";
 import { getAllBookmarks } from "./api/bookmarks";
+import { getAllFavorites } from "./api/favorite";
 import BookmarkSearchbar from "../components/BookmarkSearchbar";
 import Favorites from "../components/Favorites";
 
@@ -19,13 +20,13 @@ export default function Home() {
     setLoading(false);
   };
 
-  // const handleGetFavorites = async () => {
-  //   const response: any = await getAllFavorites();
-  //   const favorites = response.data.data.favorites;
+  const handleGetFavorites = async () => {
+    const response: any = await getAllFavorites();
+    const favorites = response.data.data.favorites;
 
-  //   setFavorites(favorites);
-  //   setLoading(false);
-  // };
+    setFavorites(favorites);
+    setLoading(false);
+  };
 
   const renderBookmarks = () => {
     if (loading) {
@@ -44,7 +45,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // handleGetFavorites();
+    handleGetFavorites();
     handleGetBookmarks();
   }, []);
 

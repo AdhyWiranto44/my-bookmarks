@@ -12,13 +12,7 @@ class FavoriteRepository {
   }
 
   async getAll(filter = {}, limit = 1, skip = 0) {
-    const favorites = await Favorite(this.connection, DataTypes)
-      .findAll({
-        where: {
-          ...filter
-        }, limit: limit, offset: skip,
-        order: [['createdAt', 'DESC']]
-      });
+    const [favorites, metadata] = await this.connection.query(`SELECT favorites.*, bookmarks.name, bookmarks.slug, bookmarks.category, bookmarks.url, bookmarks.description FROM favorites JOIN bookmarks ON favorites.bookmark = bookmarks.id ORDER BY favorites.createdAt DESC LIMIT ${limit} OFFSET ${skip}`);
 
     return favorites;
   }
