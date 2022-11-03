@@ -94,6 +94,7 @@ export default function CategoryPage() {
         categories.map((category, idx) => {
           return (
             <TableRow key={idx} num={idx}>
+              <td className="px-2 text-black dark:text-gray-100">{idx + 1}</td>
               <TableData>{category.name}</TableData>
               <TableData>
                 <div className="flex items-center">
@@ -261,11 +262,13 @@ export default function CategoryPage() {
       <div className="text-black mt-4 overflow-x-auto">
         <TableContainer>
           <TableHeader>
+            <TableHead>#</TableHead>
             {renderTableHeaders()}
             <TableHead>Aksi</TableHead>
           </TableHeader>
           <TableBody>{renderCategoryRows()}</TableBody>
           <TableHeader>
+            <TableHead>#</TableHead>
             {renderTableHeaders()}
             <TableHead>Aksi</TableHead>
           </TableHeader>

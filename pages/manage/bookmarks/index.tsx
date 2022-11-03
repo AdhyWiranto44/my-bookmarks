@@ -31,7 +31,6 @@ import FormField from "../../../components/form/FormField";
 import FormSelect from "../../../components/form/FormSelect";
 import Loading from "../../../components/Loading";
 import DataNotFound from "../../../components/DataNotFound";
-import Searchbar from "../../../components/Searchbar";
 import BookmarkSearchbar from "../../../components/BookmarkSearchbar";
 
 export default function BookmarkPage() {
@@ -222,6 +221,7 @@ export default function BookmarkPage() {
         bookmarks.map((bookmark, idx) => {
           return (
             <TableRow key={idx} num={idx}>
+              <td className="px-2 text-black dark:text-gray-100">{idx + 1}</td>
               <TableData>{bookmark.name}</TableData>
               <TableData>{bookmark.category}</TableData>
               <TableData>{bookmark.description}</TableData>
@@ -325,11 +325,13 @@ export default function BookmarkPage() {
       <div className="text-black mt-4 overflow-x-auto">
         <TableContainer>
           <TableHeader>
+            <TableHead>#</TableHead>
             {renderTableHeaders()}
             <TableHead>Aksi</TableHead>
           </TableHeader>
           <TableBody>{renderBookmarkRows()}</TableBody>
           <TableHeader>
+            <TableHead>#</TableHead>
             {renderTableHeaders()}
             <TableHead>Aksi</TableHead>
           </TableHeader>
