@@ -28,7 +28,6 @@ class FavoriteService {
       throw createError(StatusCodes.BAD_REQUEST, "Data can't be empty.");
     }
 
-    newFavorite["slug"] = newFavorite.name.replace(/\s+/g, '-').toLowerCase();
     const favorite = await new FavoriteRepository().insertOne(newFavorite);
 
     return favorite;
@@ -45,8 +44,8 @@ class FavoriteService {
     return favorite;
   }
 
-  async delete(slug) {
-    const favorite = await new FavoriteRepository().remove(slug);
+  async delete(bookmarkId) {
+    const favorite = await new FavoriteRepository().remove(bookmarkId);
 
     return favorite;
   }

@@ -84,7 +84,7 @@ class FavoriteController {
 
   async delete(req, res) {
     try {
-      const favorite = await new FavoriteService().delete(req.params.slug);
+      const favorite = await new FavoriteService().delete(req.params.id);
 
       return new ApiService(
         res, StatusCodes.OK, true,

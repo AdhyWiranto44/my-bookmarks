@@ -56,15 +56,15 @@ class FavoriteRepository {
     return updated;
   }
 
-  async remove(slug) {
+  async remove(bookmarkId) {
     const removed = await Favorite(this.connection, DataTypes)
       .findOne(
-        { where: { slug } }
+        { where: { bookmark: bookmarkId } }
       );
 
     await Favorite(this.connection, DataTypes)
       .destroy({
-        where: { slug }
+        where: { bookmark: bookmarkId }
       });
 
     return removed;

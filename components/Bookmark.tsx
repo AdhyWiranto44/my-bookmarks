@@ -1,9 +1,21 @@
-import { BsThreeDotsVertical, BsGlobe } from "react-icons/bs";
+import { useRouter } from "next/router";
+import { BsGlobe } from "react-icons/bs";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { MdContentCopy } from "react-icons/md";
+import { deleteFavorite, insertFavorite } from "../pages/api/favorite";
 import ButtonLink from "./ButtonLink";
 
 export default function Bookmark(props: any) {
+  const router = useRouter();
+
+  const handleAddNewFavorite = async (id: number) => {
+    const result = await insertFavorite({ bookmark: id });
+  };
+
+  const handleRemoveFavorite = async (id: number) => {
+    const result = await deleteFavorite(id);
+  };
+
   return (
     <a
       href={props.url || "#"}
@@ -51,8 +63,24 @@ export default function Bookmark(props: any) {
             title="Set/Unset Favorite"
             onClick={(e: any) => {
               e.preventDefault();
-              const isConfirmed = confirm("Want to set/unset favorite?");
-              isConfirmed && alert(`Set/Unset Favorite`);
+
+              if (props.isFavorite) {
+                const isConfirmed = confirm("Want to unset favorite?");
+                if (isConfirmed) {
+                  const result = handleRemoveFavorite(props.id);
+
+                  alert(`Unset Favorite`);
+                  router.reload();
+                }
+              } else {
+                const isConfirmed = confirm("Want to set favorite?");
+                if (isConfirmed) {
+                  const result = handleAddNewFavorite(props.id);
+
+                  alert(`Set Favorite`);
+                  router.reload();
+                }
+              }
             }}
           >
             {props.isFavorite ? (

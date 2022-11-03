@@ -9,6 +9,7 @@ export default function Bookmarks(props: any) {
         return (
           <Bookmark
             key={idx}
+            id={bm.id}
             name={bm.name}
             description={bm.description}
             url={bm.url}

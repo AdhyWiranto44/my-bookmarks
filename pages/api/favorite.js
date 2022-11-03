@@ -11,14 +11,14 @@ export const findFavorites = async (description = '', limit = 999, skip = 0) => 
   return await axios.get(`${domain}?description=${description}&limit=${limit}&skip=${skip}`);
 }
 
-export const insertFavorite = async (favorite) => {
-  return await axios.post(`${domain}`, favorite);
+export const insertFavorite = async (bookmarkId) => {
+  return await axios.post(`${domain}`, bookmarkId);
 }
 
 export const updateFavorite = async (id, favorite) => {
   return await axios.patch(`${domain}${id}`, favorite);
 }
 
-export const deleteFavorite = async (id) => {
-  return await axios.delete(`${domain}${id}`);
+export const deleteFavorite = async (bookmarkId) => {
+  return await axios.delete(`${domain}${bookmarkId}`);
 }
