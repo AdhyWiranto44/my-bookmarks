@@ -16,6 +16,7 @@ class BookmarkRepository {
       .findAll({
         where: {
           ...filter,
+          deletedAt: null,
           description: {
             [Op.like]: filter.description !== undefined ? `%${filter.description}%` : `%`
           }

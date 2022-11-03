@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     category: DataTypes.STRING,
     slug: DataTypes.STRING,
     description: DataTypes.STRING,
-    url: DataTypes.STRING
+    url: DataTypes.STRING,
+    deletedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Bookmark', tableName: 'bookmarks'

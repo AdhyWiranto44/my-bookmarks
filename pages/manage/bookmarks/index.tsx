@@ -208,7 +208,11 @@ export default function BookmarkPage() {
   const renderTableHeaders = () => {
     return bookmarks.length > 0
       ? Object.keys(bookmarks[0]).map((head, idx) => {
-          if (!["id", "slug", "createdAt", "updatedAt"].includes(head)) {
+          if (
+            !["id", "slug", "createdAt", "updatedAt", "deletedAt"].includes(
+              head
+            )
+          ) {
             return <TableHead key={idx}>{head}</TableHead>;
           }
         })
