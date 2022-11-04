@@ -34,6 +34,35 @@ class BookmarkController {
     }
   }
 
+  async getAllArchive(req, res) {
+    const queries = req.query;
+    const filter = {}
+    const pagination = { "limit": 1, "skip": 0 }
+
+    for (const property in queries) {
+      if (property == "limit" || property == "skip") {
+        pagination[property] = parseInt(queries[property]);
+      } else {
+        filter[property] = queries[property];
+      }
+    }
+
+    try {
+      const bookmarks = await new BookmarkService().getAllArchive(filter, pagination.limit, pagination.skip);
+
+      return new ApiService(
+        res, StatusCodes.OK, true,
+        "Archive found.",
+        {
+          "total": bookmarks.length,
+          "archive": bookmarks
+        }
+      ).sendResponse();
+    } catch (err) {
+      return new ApiService(res).sendErrorResponse(err);
+    }
+  }
+
   async getOne(req, res) {
     try {
       const bookmark = await new BookmarkService().getOne(req.params.slug);

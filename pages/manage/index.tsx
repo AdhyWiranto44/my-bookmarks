@@ -35,6 +35,17 @@ export default function ManagePage() {
         </div>
         <div className="mx-3 mb-2">
           <ButtonLink
+            text="Manage Archive"
+            href="/manage/bookmarks/archive"
+            icon={
+              <div className="mr-1">
+                <FaClipboardList />
+              </div>
+            }
+          />
+        </div>
+        <div className="mx-3 mb-2">
+          <ButtonLink
             text="Manage Categories"
             href="/manage/categories"
             icon={

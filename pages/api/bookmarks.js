@@ -7,8 +7,16 @@ export const getAllBookmarks = async (limit = 999, skip = 0) => {
   return await axios.get(`${domain}?limit=${limit}&skip=${skip}`);
 }
 
+export const getAllArchive = async (limit = 999, skip = 0) => {
+  return await axios.get(`${domain}archive?limit=${limit}&skip=${skip}`);
+}
+
 export const findBookmarks = async (description = '', limit = 999, skip = 0) => {
   return await axios.get(`${domain}?description=${description}&limit=${limit}&skip=${skip}`);
+}
+
+export const findArchive = async (description = '', limit = 999, skip = 0) => {
+  return await axios.get(`${domain}archive?description=${description}&limit=${limit}&skip=${skip}`);
 }
 
 export const findBookmarksByCategory = async (category = '', limit = 999, skip = 0) => {

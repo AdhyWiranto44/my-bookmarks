@@ -8,7 +8,23 @@ class BookmarkService {
   constructor() { }
 
   async getAll(filter = {}, limit = 1, skip = 0) {
-    const bookmarks = await new BookmarkRepository().getAll(filter, limit, skip);
+    let bookmarks = await new BookmarkRepository().getAll(filter, limit, skip);
+
+    bookmarks = bookmarks.filter((bm, idx) => {
+      return bm.deletedAt === null;
+    });
+
+    if (bookmarks.length < 1) throw createError(StatusCodes.NOT_FOUND, "Bookmarks empty.");
+
+    return bookmarks;
+  }
+
+  async getAllArchive(filter = {}, limit = 1, skip = 0) {
+    let bookmarks = await new BookmarkRepository().getAll(filter, limit, skip);
+
+    bookmarks = bookmarks.filter((bm, idx) => {
+      return bm.deletedAt !== null;
+    });
 
     if (bookmarks.length < 1) throw createError(StatusCodes.NOT_FOUND, "Bookmarks empty.");
 

@@ -8,6 +8,8 @@ export default function Button(props: any) {
   return (
     <button
       className={`${btnColor} py-2 px-6 mr-2 my-2 rounded-lg flex items-center`}
+      name={props.name}
+      title={props.name}
       onClick={props.onClick ? props.onClick : () => console.log("clicked.")}
     >
       {props.icon}
