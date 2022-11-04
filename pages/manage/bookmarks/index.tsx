@@ -11,6 +11,7 @@ import {
   updateBookmark,
 } from "../../api/bookmarks";
 import {
+  FaArchive,
   FaArrowLeft,
   FaChevronDown,
   FaChevronUp,
@@ -71,10 +72,12 @@ export default function BookmarkPage() {
     }
   };
 
-  const handleDeleteBookmark = async (slug: string) => {
+  const handleArchiveBookmark = async (slug: string) => {
     try {
-      const wantToDelete: boolean = confirm(`Delete ${slug}`);
-      wantToDelete && (await deleteBookmark(slug));
+      const wantToArchive: boolean = confirm(
+        `Move bookmark ${slug} to archive?`
+      );
+      wantToArchive && (await updateBookmark(slug, { deletedAt: new Date() }));
     } catch (err: any) {
       alert(err);
     }
@@ -248,11 +251,11 @@ export default function BookmarkPage() {
                     />
                   </div>
                   <Button
-                    name="Delete"
+                    name="Archive"
                     btnColor={"red"}
-                    icon={<FaTrashAlt />}
+                    icon={<FaArchive />}
                     onClick={async (e: any) => {
-                      await handleDeleteBookmark(bookmark.slug);
+                      await handleArchiveBookmark(bookmark.slug);
                       await handleGetBookmarks();
                     }}
                   />
