@@ -233,7 +233,9 @@ export default function BookmarkPage() {
               <TableData>{bookmark.category}</TableData>
               <TableData>{bookmark.description}</TableData>
               <TableData>
-                <a href={bookmark.url}>{bookmark.url}</a>
+                <a className="underline" href={bookmark.url}>
+                  {bookmark.url}
+                </a>
               </TableData>
               <TableData>
                 <div className="flex items-center">
