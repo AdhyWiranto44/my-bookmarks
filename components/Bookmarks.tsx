@@ -13,6 +13,7 @@ export default function Bookmarks(props: any) {
             name={bm.name}
             description={bm.description}
             url={bm.url}
+            handleGetFavorites={props.handleGetFavorites}
           />
         );
       })

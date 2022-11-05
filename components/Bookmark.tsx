@@ -70,7 +70,7 @@ export default function Bookmark(props: any) {
                   const result = handleRemoveFavorite(props.id);
 
                   alert(`Unset Favorite`);
-                  router.reload();
+                  props.handleGetFavorites();
                 }
               } else {
                 const isConfirmed = confirm("Want to set favorite?");
@@ -78,7 +78,7 @@ export default function Bookmark(props: any) {
                   const result = handleAddNewFavorite(props.id);
 
                   alert(`Set Favorite`);
-                  router.reload();
+                  props.handleGetFavorites();
                 }
               }
             }}

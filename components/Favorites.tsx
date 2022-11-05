@@ -14,6 +14,7 @@ export default function Favorites(props: any) {
             description={fv.description}
             url={fv.url}
             isFavorite={true}
+            handleGetFavorites={props.handleGetFavorites}
           />
         );
       })

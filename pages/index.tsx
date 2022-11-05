@@ -32,7 +32,12 @@ export default function Home() {
     if (loading) {
       return <h1 className="text-xl text-black">Loading...</h1>;
     } else {
-      return <Bookmarks bookmarks={bookmarks} />;
+      return (
+        <Bookmarks
+          bookmarks={bookmarks}
+          handleGetFavorites={handleGetFavorites}
+        />
+      );
     }
   };
 
@@ -40,7 +45,12 @@ export default function Home() {
     if (loading) {
       return <h1 className="text-xl text-black">Loading...</h1>;
     } else {
-      return <Favorites favorites={favorites} />;
+      return (
+        <Favorites
+          favorites={favorites}
+          handleGetFavorites={handleGetFavorites}
+        />
+      );
     }
   };
 
